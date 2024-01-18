@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ETCH-A-SKETCH</title>
+    <link rel="stylesheet" href="./style.css">
+</head>
+<body>
+    <div class="container"></div>
+    <script>
+        const resolutionButton = document.createElement('button');
+        resolutionButton.textContent = "Set Resolution";
+        const body = document.querySelector("body");
+        body.appendChild(resolutionButton);
+        let resolution = 16;
+        resolutionButton.addEventListener("click", () => {
+            resolution = prompt("Enter Resolution:");
+            updateGrid();
+        });
+        const container = document.querySelector('.container');
+
+        function updateGrid() {
+
+            container.innerHTML = "";
+            
+            for (let i = 0; i < resolution; i++) {
+                const column = document.createElement('div');
+                column.className = "row";
+                container.appendChild(column);
+                for (let j = 0; j < resolution; j++) {
+                    const div = document.createElement('div');
+                    div.className = "pixel";
+                    column.appendChild(div);
+                }
+            }
+        }
+
+        updateGrid();
+
+        const pixel = document.querySelectorAll('.pixel');
+
+        pixel.forEach(
+            event => event.addEventListener('mouseover', () => {
+                event.style.backgroundColor = "black";
+
+            })
+        );
+    </script>   
+</body>
+</html>
